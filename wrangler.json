@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sale-checker",
+  "main": "src/index.js",
+  "compatibility_date": "2025-01-23",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "ai": {
+    "binding": "AI"
+  },
+  "browser": {
+    "binding": "BROWSER"
+  },
+  "triggers": {
+    "crons": ["0 15 * * *"]  // Runs once a day at 15:00 UTC
+  },
+  "observability": {
+    "enabled": true
+  }
+}
