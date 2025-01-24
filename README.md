@@ -16,13 +16,13 @@ A Cloudflare Worker that monitors websites for sales. It takes screenshots, uses
 - [Node.js](https://nodejs.org/)
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/)
 - [Resend Account](https://resend.com/) for email notifications
-- Cloudflare Account with Workers enabled
+- Cloudflare Account with Workers and Browser Rendering (paid plan) enabled
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone [your-repo-url]
+git clone https://github.com/ethulia/sales-checker.git
 cd sale-checker
 ```
 
@@ -66,56 +66,3 @@ wrangler deploy
 wrangler secret put RESEND_API_KEY
 wrangler secret put MY_EMAIL_ADDRESS
 ```
-
-### Configuration
-
-The worker is configured to run daily at 15:00 UTC. You can modify the schedule in `wrangler.json`:
-
-```json
-{
-  "triggers": {
-    "crons": ["0 15 * * *"]
-  }
-}
-```
-
-## API
-
-### Endpoints
-
-- `GET /?url=[url]`: Takes a screenshot of the specified URL
-- `POST /check-sales?url=[url]`: Checks for sales at the specified URL
-
-### Response Format
-
-Success response:
-```json
-{
-  "success": true,
-  "timestamp": "2024-01-24T15:00:00.000Z",
-  "hasSale": true,
-  "analysisResult": "Found 20% off sale on all items",
-  "emailSent": true
-}
-```
-
-Error response:
-```json
-{
-  "success": false,
-  "timestamp": "2024-01-24T15:00:00.000Z",
-  "error": "Error message here"
-}
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-[Your chosen license]
